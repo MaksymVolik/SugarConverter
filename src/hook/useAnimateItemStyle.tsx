@@ -23,7 +23,7 @@ const useAnimateItemStyle = (hgt: number) => {
   };
 
   const inputRange = Object.values(animate_state);
-  const height = value.interpolate({inputRange, outputRange: [40, hgt]});
+  const height = value.interpolate({inputRange, outputRange: [46, hgt]});
   const rotate = value.interpolate({
     inputRange,
     outputRange: ['90deg', '-90deg'],

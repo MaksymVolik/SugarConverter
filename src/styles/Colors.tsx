@@ -24,7 +24,7 @@ const Themes = {
     background: '#F3F3F3',
 
     bgText: 'lightgrey',
-    border: '#444',
+    border: '#000',
 
     arrFill: '#FFF',
     arrBg: '#6F737B',
@@ -34,8 +34,8 @@ const Themes = {
     text: '#FFF',
 
     background: '#222',
-    bgText: '#61677A',
-    border: '#DAE1E7',
+    bgText: '#404040',
+    border: '#FFF',
 
     arrFill: '#000',
     arrBg: '#F3F3F3',

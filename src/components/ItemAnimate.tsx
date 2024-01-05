@@ -12,8 +12,7 @@ type Props = {
 
 const ItemAnimate = ({item}: {item: Props}) => {
   const colors = useThemeColors();
-  const {onPress, height, backgroundColor, animatedRotate} =
-    useAnimateItemStyle(item.height);
+  const {onPress, height, animatedRotate} = useAnimateItemStyle(item.height);
 
   return (
     <Animated.View
@@ -21,7 +20,8 @@ const ItemAnimate = ({item}: {item: Props}) => {
         styles.items,
         {
           height,
-          backgroundColor,
+          borderColor: colors.border,
+          // backgroundColor,
         },
       ]}>
       <View style={styles.titleBlock}>
@@ -48,10 +48,11 @@ const ItemAnimate = ({item}: {item: Props}) => {
         </Pressable>
       </View>
       <View style={styles.descr}>
-        <View style={styles.row}>
+        <View style={[styles.row, {backgroundColor: colors.bgText}]}>
           <Text
             style={[
               styles.item1,
+              styles.itemTitle,
               {
                 color: colors.text,
               },
@@ -61,6 +62,7 @@ const ItemAnimate = ({item}: {item: Props}) => {
           <Text
             style={[
               styles.item2,
+              styles.itemTitle,
               {
                 color: colors.text,
               },
@@ -70,6 +72,7 @@ const ItemAnimate = ({item}: {item: Props}) => {
           <Text
             style={[
               styles.item2,
+              styles.itemTitle,
               {
                 color: colors.text,
               },
@@ -78,8 +81,18 @@ const ItemAnimate = ({item}: {item: Props}) => {
           </Text>
         </View>
         {item.norm.map((el, key) => {
+          const isOdd = key % 2 !== 0;
           return (
-            <View style={styles.row} key={key}>
+            <View
+              style={[
+                styles.row,
+                isOdd
+                  ? {
+                      backgroundColor: colors.bgText,
+                    }
+                  : null,
+              ]}
+              key={key}>
               <Text
                 style={[
                   styles.item1,
@@ -118,8 +131,9 @@ const ItemAnimate = ({item}: {item: Props}) => {
 const styles = StyleSheet.create({
   items: {
     width: '100%',
-    padding: 10,
-    borderRadius: 10,
+    paddingVertical: 10,
+    borderRadius: 23,
+    borderWidth: 1,
     marginBottom: 10,
     overflow: 'hidden',
   },
@@ -128,6 +142,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignContent: 'center',
+    paddingHorizontal: 10,
   },
   title: {
     fontSize: 16,
@@ -154,7 +169,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingBottom: 10,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
   },
   item1: {
     width: '26%',
@@ -162,6 +178,9 @@ const styles = StyleSheet.create({
   },
   item2: {
     width: '34%',
+  },
+  itemTitle: {
+    fontWeight: 'bold',
   },
 });
 

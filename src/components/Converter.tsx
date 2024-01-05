@@ -57,6 +57,7 @@ const Converter: React.FC = () => {
             keyboardType="numeric"
             textAlign="right"
             maxLength={8}
+            autoFocus={true}
           />
           <Text
             style={[
@@ -112,6 +113,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   input: {
+    width: '100%',
     fontSize: 30,
     padding: 10,
   },
