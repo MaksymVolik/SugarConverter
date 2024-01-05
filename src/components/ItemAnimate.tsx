@@ -1,18 +1,29 @@
-import React from 'react';
-import {Animated, StyleSheet, View, Text, Pressable} from 'react-native';
+import React, {useState} from 'react';
+import {
+  Animated,
+  StyleSheet,
+  View,
+  Text,
+  Pressable,
+  LayoutChangeEvent,
+} from 'react-native';
 import useAnimateItemStyle from '../hook/useAnimateItemStyle';
 import useThemeColors from '../hook/useThemeColors';
 import Arrow from '../assets/icons/arrow.svg';
 
 type Props = {
   title: string;
-  height: number;
   norm: {age: string; emptyStomach: string; afterMeal: string}[];
 };
 
 const ItemAnimate = ({item}: {item: Props}) => {
   const colors = useThemeColors();
-  const {onPress, height, animatedRotate} = useAnimateItemStyle(item.height);
+  const [viewHeight, setViewHeight] = useState(46);
+  const {onPress, height, animatedRotate} = useAnimateItemStyle();
+
+  const onLayout = (event: LayoutChangeEvent) => {
+    setViewHeight(event.nativeEvent.layout.height);
+  };
 
   return (
     <Animated.View
@@ -21,108 +32,111 @@ const ItemAnimate = ({item}: {item: Props}) => {
         {
           height,
           borderColor: colors.border,
+          maxHeight: viewHeight + 20,
           // backgroundColor,
         },
       ]}>
-      <View style={styles.titleBlock}>
-        <Text
-          style={[
-            styles.title,
-            {
-              color: colors.text,
-            },
-          ]}>
-          {item.title}
-        </Text>
-        <Pressable onPress={onPress}>
-          <Animated.View
-            style={[
-              styles.arrow,
-              animatedRotate,
-              {
-                backgroundColor: colors.arrBg,
-              },
-            ]}>
-            <Arrow fill={colors.arrFill} />
-          </Animated.View>
-        </Pressable>
-      </View>
-      <View style={styles.descr}>
-        <View style={[styles.row, {backgroundColor: colors.bgText}]}>
+      <View onLayout={onLayout}>
+        <View style={styles.titleBlock}>
           <Text
             style={[
-              styles.item1,
-              styles.itemTitle,
+              styles.title,
               {
                 color: colors.text,
               },
             ]}>
-            Вік
+            {item.title}
           </Text>
-          <Text
-            style={[
-              styles.item2,
-              styles.itemTitle,
-              {
-                color: colors.text,
-              },
-            ]}>
-            Натще
-          </Text>
-          <Text
-            style={[
-              styles.item2,
-              styles.itemTitle,
-              {
-                color: colors.text,
-              },
-            ]}>
-            Через 1-2 години після їжі
-          </Text>
-        </View>
-        {item.norm.map((el, key) => {
-          const isOdd = key % 2 !== 0;
-          return (
-            <View
+          <Pressable onPress={onPress}>
+            <Animated.View
               style={[
-                styles.row,
-                isOdd
-                  ? {
-                      backgroundColor: colors.bgText,
-                    }
-                  : null,
-              ]}
-              key={key}>
-              <Text
+                styles.arrow,
+                animatedRotate,
+                {
+                  backgroundColor: colors.arrBg,
+                },
+              ]}>
+              <Arrow fill={colors.arrFill} />
+            </Animated.View>
+          </Pressable>
+        </View>
+        <View style={styles.descr}>
+          <View style={[styles.row, {backgroundColor: colors.bgText}]}>
+            <Text
+              style={[
+                styles.item1,
+                styles.itemTitle,
+                {
+                  color: colors.text,
+                },
+              ]}>
+              Вік
+            </Text>
+            <Text
+              style={[
+                styles.item2,
+                styles.itemTitle,
+                {
+                  color: colors.text,
+                },
+              ]}>
+              Натще
+            </Text>
+            <Text
+              style={[
+                styles.item2,
+                styles.itemTitle,
+                {
+                  color: colors.text,
+                },
+              ]}>
+              Через 1-2 години після їжі
+            </Text>
+          </View>
+          {item.norm.map((el, key) => {
+            const isOdd = key % 2 !== 0;
+            return (
+              <View
                 style={[
-                  styles.item1,
-                  {
-                    color: colors.text,
-                  },
-                ]}>
-                {el.age}
-              </Text>
-              <Text
-                style={[
-                  styles.item2,
-                  {
-                    color: colors.text,
-                  },
-                ]}>
-                {el.emptyStomach}
-              </Text>
-              <Text
-                style={[
-                  styles.item2,
-                  {
-                    color: colors.text,
-                  },
-                ]}>
-                {el.afterMeal}
-              </Text>
-            </View>
-          );
-        })}
+                  styles.row,
+                  isOdd
+                    ? {
+                        backgroundColor: colors.bgText,
+                      }
+                    : null,
+                ]}
+                key={key}>
+                <Text
+                  style={[
+                    styles.item1,
+                    {
+                      color: colors.text,
+                    },
+                  ]}>
+                  {el.age}
+                </Text>
+                <Text
+                  style={[
+                    styles.item2,
+                    {
+                      color: colors.text,
+                    },
+                  ]}>
+                  {el.emptyStomach}
+                </Text>
+                <Text
+                  style={[
+                    styles.item2,
+                    {
+                      color: colors.text,
+                    },
+                  ]}>
+                  {el.afterMeal}
+                </Text>
+              </View>
+            );
+          })}
+        </View>
       </View>
     </Animated.View>
   );
@@ -130,6 +144,7 @@ const ItemAnimate = ({item}: {item: Props}) => {
 
 const styles = StyleSheet.create({
   items: {
+    minHeight: 46,
     width: '100%',
     paddingVertical: 10,
     borderRadius: 23,
@@ -173,11 +188,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   item1: {
-    width: '26%',
+    width: '25%',
     fontSize: 14,
   },
   item2: {
-    width: '34%',
+    width: '35%',
   },
   itemTitle: {
     fontWeight: 'bold',

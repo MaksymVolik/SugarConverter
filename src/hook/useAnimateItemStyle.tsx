@@ -2,7 +2,7 @@ import {useState, useRef} from 'react';
 import {Animated, Easing} from 'react-native';
 import useThemeColors from './useThemeColors';
 
-const useAnimateItemStyle = (hgt: number) => {
+const useAnimateItemStyle = () => {
   const [isOpen, setIsOpen] = useState(false);
   const colors = useThemeColors();
 
@@ -23,7 +23,10 @@ const useAnimateItemStyle = (hgt: number) => {
   };
 
   const inputRange = Object.values(animate_state);
-  const height = value.interpolate({inputRange, outputRange: [46, hgt]});
+  const height = value.interpolate({
+    inputRange,
+    outputRange: ['0%', '100%'],
+  });
   const rotate = value.interpolate({
     inputRange,
     outputRange: ['90deg', '-90deg'],

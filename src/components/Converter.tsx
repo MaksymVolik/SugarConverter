@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   inputBlock: {
-    marginTop: 30,
+    marginTop: 20,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-end',
@@ -114,12 +114,12 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '100%',
-    fontSize: 30,
+    fontSize: 40,
     padding: 10,
   },
   label: {
     fontSize: 18,
-    paddingBottom: 13,
+    paddingBottom: 16,
   },
   separator: {
     marginVertical: 8,
