@@ -1,21 +1,3 @@
-// import {Platform, PlatformColor, ColorValue} from 'react-native';
-
-// const bg: ColorValue =
-//   Platform.OS === 'android'
-//     ? PlatformColor('?android:color/background_light')
-//     : '#F3F3F3';
-// color:
-
-// ...Platform.select({
-//   android: {
-//     color: PlatformColor('?android:attr/colorForeground'),
-//     // backgroundColor: PlatformColor('@android:color/background'),
-//   },
-//   default: {color: 'black'},
-// }),
-
-// export const white = '#FDFFFC';
-
 const Themes = {
   light: {
     theme: 'light',

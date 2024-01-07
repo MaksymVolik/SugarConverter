@@ -1,8 +1,10 @@
 import React, {useState, useContext} from 'react';
 import {View, Text, TextInput, StyleSheet, Pressable} from 'react-native';
+
 import {LevelContext} from '../context/LevelContext';
-import Separator from './Separator';
 import useThemeColors from '../hook/useThemeColors';
+
+import Separator from './Separator';
 import SVGImage from '../assets/icons/arrow-right-arrow-left.svg';
 
 const Converter: React.FC = () => {

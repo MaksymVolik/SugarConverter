@@ -175,10 +175,6 @@ const styles = StyleSheet.create({
   },
   descr: {
     marginTop: 20,
-    // display: 'flex',
-    // flexDirection: 'row',
-    // flexWrap: 'wrap',
-    // justifyContent: 'space-between',
   },
   row: {
     display: 'flex',

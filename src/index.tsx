@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import {SafeAreaView, StatusBar, StyleSheet, ScrollView} from 'react-native';
+
 import {LevelContext} from './context/LevelContext';
 import useThemeColors from './hook/useThemeColors';
+
 import Converter from './components/Converter';
 import Scale from './components/Scale';
 import Description from './components/Description';
@@ -19,7 +21,7 @@ export default () => {
           backgroundColor={colors.background}
         />
 
-        <ScrollView style={styles.scroll}>
+        <ScrollView>
           <Converter />
           <Scale />
           <Description />
@@ -33,8 +35,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: 15,
-  },
-  scroll: {
-    // flex: 1,
   },
 });

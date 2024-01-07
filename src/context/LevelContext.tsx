@@ -5,13 +5,6 @@ type LevelType = {
   setLevel: (level: number) => void;
 };
 
-// type TimerContextType = {
-//     timer: number;
-//     setTimer: Dispatch<SetStateAction<number>>;
-//     timerStarted: boolean;
-//     setTimerStarted: (_: boolean) => void
-// };
-
 const defaultLevel = {
   level: 0,
   setLevel: () => {},
