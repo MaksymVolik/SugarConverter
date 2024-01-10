@@ -8,6 +8,7 @@ The application supports light and dark themes, depending on the selected system
 - TypeScript
 - React Context
 - React Native Animated
+- custom hooks useThemeColors, useAnimateItemStyle
 - libraries: react native svg, 
 
 ## Application Record:
